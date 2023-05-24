@@ -8,19 +8,25 @@ router.get('/create', (req, res) => {
 
 router.post('/create', (req, res) => {
     const { name,
-        descriptions,
+        description,
         imageUrl,
         difficultyLevel }
         = req.body;
 
     cubManager.create({
         name,
-        descriptions,
+        description,
         imageUrl,
         difficultyLevel
     });
 
     res.redirect('/')
 });
+
+router.get('/details/:cibId', (req, res) => { 
+    const cube = cubManager.getOne(req.params.cibId);
+    res.render("details", {cube})
+});
+
 
 module.exports = router;
