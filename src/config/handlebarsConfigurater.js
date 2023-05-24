@@ -1,6 +1,6 @@
 const handlebars = require('express-handlebars');
 
-function handlebarsConfiguarater(app) {
+function handlebarsConfigurater(app) {
     //Handlebars confoguration
     app.engine('hbs', handlebars.engine({
         extname: 'hbs',
@@ -10,4 +10,4 @@ function handlebarsConfiguarater(app) {
     app.set('views', 'src/views');
 }
 
-module.exports = handlebarsConfiguarater;
+module.exports = handlebarsConfigurater;

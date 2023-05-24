@@ -1,12 +1,12 @@
 const express = require('express');
-const expressConfiguarater = require('./config/expressConfiguarater');
-const handlebarsConfiguarater = require('./config/handlebarsConfiguarater');
+const expressConfigurater = require('./config/expressConfigurater');
+const handlebarsConfigurater = require('./config/handlebarsConfigurater');
 
 const app = express();
 const PORT = 5000;
 
-expressConfiguarater(app);
-handlebarsConfiguarater(app);
+expressConfigurater(app);
+handlebarsConfigurater(app);
 
 
 //Routes

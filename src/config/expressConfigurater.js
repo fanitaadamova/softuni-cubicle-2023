@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 
-function expressConfiguarater(app) {
+function expressConfigurater(app) {
     //Static middleware, search static file in public folder
     app.use(express.static(path.resolve(__dirname, '../public')));
     //Add third party middleware 
@@ -10,4 +10,4 @@ function expressConfiguarater(app) {
 
 }
 
-module.exports = expressConfiguarater;
+module.exports = expressConfigurater;
