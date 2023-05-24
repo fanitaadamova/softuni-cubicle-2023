@@ -25,6 +25,10 @@ router.post('/create', (req, res) => {
 
 router.get('/details/:cibId', (req, res) => { 
     const cube = cubManager.getOne(req.params.cibId);
+
+    if(!cube){
+       return res.redirect('/404');
+    }
     res.render("details", {cube})
 });
 
