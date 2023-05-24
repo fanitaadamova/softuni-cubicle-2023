@@ -1,5 +1,5 @@
 const uniqid = require('uniqid');
-const cubs = [
+const cubes = [
     {
         id: uniqid(),
         name: 'Gan356 Air SM',
@@ -17,16 +17,33 @@ const cubs = [
     }
 ];
 
-exports.getAll = () => cubs.slice();
+exports.getAll = (search, from, to) => {
+    let result = cubes.slice();
 
-exports.getOne = (cubId) => cubs.find(x => x.id == cubId);
+    if (search) {
+        result = result.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()));
+    }
+
+    if (from) {
+        result = result.filter(cube => cube.difficultyLevel >= Number(from));
+    }
+
+    if (to) {
+        result = result.filter(cube => cube.difficultyLevel <= Number(to));
+    }
+
+    return result
+
+};
+
+exports.getOne = (cubId) => cubes.find(x => x.id == cubId);
 
 exports.create = (cubData) => {
     const newCube = {
         id: uniqid(),
         ...cubData
     }
-    cubs.push(newCube);
+    cubes.push(newCube);
 
     return newCube;
 }

@@ -3,7 +3,9 @@ const cubManager = require('../managers/cubeManager')
 
 
 router.get('/', (req, res) => {
-    const cubes = cubManager.getAll();
+    const { search, from, to } = req.query;
+
+    const cubes = cubManager.getAll(search, from, to);
     res.render("index", { cubes })
 });
 
