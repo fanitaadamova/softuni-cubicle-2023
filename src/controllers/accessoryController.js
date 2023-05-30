@@ -7,8 +7,8 @@ router.get('/create', (req, res) => {
 router.post('/create', (req, res) => {
     const body = req.body;
 
-    //TODO add accessory in db
-    res.redirect('/')
+    //TODO add accessory data in db
+    res.redirect('/');
 });
 
 module.exports = router;
