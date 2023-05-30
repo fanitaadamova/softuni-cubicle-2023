@@ -1,2 +1,4 @@
+const Accessory = require('../models/Accessory');
 
-exports.create = (accessoryData) => console.log(accessoryData);
+//create is same to save
+exports.create = (accessoryData) => Accessory.create(accessoryData);
