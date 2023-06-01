@@ -21,10 +21,20 @@ exports.getAll = async (search, from, to) => {
 };
 
 exports.getOne = (cubeId) => Cube.findById(cubeId);
+exports.getOneWithAccessories = (cubeId) => this.getOne(cubeId).populate('accessories');
 
 exports.create = async (cubData) => {
     const cube = new Cube(cubData);
+    //може да не е async await, по подобие на accessory Manager-a - return cube.save(); 
     await cube.save();
 
     return cube;
 }
+
+exports.attachAccessory = async (cubeId, accessoryId) => {
+    //return Cube.findByIdAndUpdate(cubeId, { $push: { accessories: accessoryId } });
+       const cube = await Cube.findById(cubeId);
+       cube.accessories.push(accessoryId);
+
+      return await cube.save();
+};
