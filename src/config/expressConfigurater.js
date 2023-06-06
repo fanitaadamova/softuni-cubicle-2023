@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 function expressConfigurater(app) {
     //Static middleware, search static file in public folder
@@ -7,7 +8,7 @@ function expressConfigurater(app) {
     //Add third party middleware 
     const bodyParser = express.urlencoded({ extended: false });
     app.use(bodyParser);
-
+    app.use(cookieParser());
 }
 
 module.exports = expressConfigurater;
