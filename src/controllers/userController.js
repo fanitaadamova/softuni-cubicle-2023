@@ -11,7 +11,6 @@ router.post('/register', async(req, res) => {
 
     await userManager.register({username, password, repeatPassword});
 
-    console.log(req.body);
     res.redirect('/users/login')
 });
 
