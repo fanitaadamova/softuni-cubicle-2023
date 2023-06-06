@@ -5,7 +5,7 @@ const accessoryManager = require('../managers/accessoryManager');
 
 router.get('/create', (req, res) => {
     console.log(req.user);
-    
+
     res.render('create');
 });
 
@@ -22,6 +22,7 @@ router.post('/create', async (req, res) => {
         description,
         imageUrl,
         difficultyLevel: Number(difficultyLevel),
+        owner: req.user._id
     });
 
     res.redirect('/')
