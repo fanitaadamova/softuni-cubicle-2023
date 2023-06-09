@@ -29,11 +29,18 @@ router.get('/login', (req, res) => {
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
-    const token = await userManager.login(username, password);
+    try {
+        const token = await userManager.login(username, password);
+    
+        res.cookie('auth', token, { httpOnly: true });
+    
+        res.redirect('/');
+        
+    } catch (err) {
+        const errorMessages = extractErrorMessages(err);
+        res.status(404).render('users/login', { errorMessages });
+    }
 
-    res.cookie('auth', token, { httpOnly: true });
-
-    res.redirect('/');
 });
 
 router.get('/logout', (req, res) => {
