@@ -66,9 +66,16 @@ router.post('/:cubeId/attach-accessory', isAuth, async (req, res) => {
 
     const cubeId = req.params.cubeId;
 
-    await cubeManager.attachAccessory(cubeId, accessoryId);
+    try {
+        await cubeManager.attachAccessory(cubeId, accessoryId);
+    
+        res.redirect(`/cubes/${cubeId}/details`);
+        
+    } catch (err) {
+        const errorMessages = extractErrorMessages(err);
+        res.status(404).redirect(`/cubes/${cubeId}/details`, { errorMessages });
+    }
 
-    res.redirect(`/cubes/${cubeId}/details`);
 });
 
 router.get('/:cubeId/delete', isAuth, async (req, res) => {
@@ -105,9 +112,15 @@ router.get('/:cubeId/edit', isAuth, async (req, res) => {
 router.post('/:cubeId/edit', isAuth, async (req, res) => {
     const cubData = req.body;
 
-    await cubeManager.update(req.params.cubeId, cubData),
+    try {
+        await cubeManager.update(req.params.cubeId, cubData),
+    
+            res.redirect(`/cubes/${req.params.cubeId}/details`);    
+    } catch (err) {
+        const errorMessages = extractErrorMessages(err);
+        res.status(404).redirect(`/cubes/${req.params.cubeId}/details`, { errorMessages });
+    }
 
-        res.redirect(`/cubes/${req.params.cubeId}/details`);
 });
 
 
